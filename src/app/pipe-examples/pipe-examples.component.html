@@ -1,0 +1,47 @@
+<h5>Pipe Examples</h5>
+<br>
+<p>Title: {{ book.title | lowercase | uppercase | camelCase }}</p>
+<p>Rating: {{ book.rating | number:'1.1-1' }}</p>
+<p>Pages: {{ book.pages | number }}</p>
+<p>Price: {{ book.price | currency:'BRL':true }}</p>
+<p>Release date: {{ book.releaseDate | date:'dd-MMM-yyyy' }}</p>
+<p>URL: {{ book.url }}</p>
+<br>
+<pre>Book: {{ book | json }}</pre>
+<br>
+<br>
+<input type="text" [(ngModel)]="filter">
+<br>
+<input type="text" #newValue>
+<br>
+<button (click)="addCourse(newValue.value)">Add Course</button>
+<br>
+<h5>Pure pipe</h5>
+<br>
+<ul>
+    <!-- don't make that filter in real projects!-->
+    <li *ngFor="let course of courses | arrayFilter:filter">
+        {{ course }}
+    </li>
+</ul>
+<br>
+<h5>Impure pipe</h5>
+<br>
+<ul>
+    <!-- don't make that filter in real projects!-->
+    <li *ngFor="let course of courses | impureArrayFilter:filter">
+        {{ course }}
+    </li>
+</ul>
+<br>
+<h5>Right way to use filters in real projects</h5>
+<br>
+<ul>
+    <li *ngFor="let course of getCourses()">
+        {{ course }}
+    </li>
+</ul>
+<br>
+<p>{{ asyncValue | async }}</p>
+<br>
+<p>{{ asyncValue2 | async }}</p>
